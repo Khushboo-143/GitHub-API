@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>githum API</title>
+</head>
+<body>
+    <div class="containers">
+        <div class="Search-area">
+            <input type="text" id = "username1">
+            <button onclick="getDeets()">Give Details</button>
+        </div>
+    </div>
+    <div class="output-container">
+        <div class="profile" id="profile">
+            <!-- <img src=".."/>  we can do it also but let follow js -->
+        </div>
+        <div class="username">
+            <h1 id="name"></h1>
+        </div>
+        <div id="info"></div>
+        <ul>
+            <li id="followers"></li>
+            <li id="following"></li>
+        </ul>
+    </div>
+    
+
+    <script>
+// API
+    // https://api.github.com/users/devkapilbansal
+    
+    function getDeets(){
+        // var username = "devkapilbansal";
+        // var username = "utkarshgoel10";
+        const username = document.getElementById('username1').value; 
+        console.log(name);
+        
+        fetch(`https://api.github.com/users/${username}`).then(function(data){
+            return data.json();
+        }).then(function(res){
+            // console.log(res.followers);
+            document.getElementById('name').innerHTML = res.name;
+            document.getElementById('info').innerHTML = res.bio;
+            document.getElementById('followers').innerHTML = res.followers + " followers";
+            document.getElementById('following').innerHTML = res.following + " following";
+            document.getElementById("profile").innerHTML = `<img src="${res.avatar_url}" />`
+
+        })
+    }
+
+
+
+/* // 1
+    // RECAPE    
+        let demo = 10;
+        // value = 10;
+        // console.log(value = 10);
+        // console.log(demo);
+// concat
+        // console.log("value = "+ demo);
+// template string
+        console.log(`value = ${demo}`);
+        
+
+        // API // ve access data..using obj.keys
+        fetch('api_url').then(function(data){
+            return data.json();
+        }).then(function(dummy){
+            console.log(dummy);
+        }).catch(function(e){
+            console.log(e);
+        })
+
+    */
+ 
+
+    </script>
+</body>
+</html>
